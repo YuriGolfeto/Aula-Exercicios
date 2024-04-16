@@ -10,10 +10,10 @@ public class ex3 {
         num1 = sc.nextInt();
         System.out.println("digite o segundo numero:");
         num2 = sc.nextInt();
-        if (num1>num2) {
-            System.out.println(num1+" e o maior numero ");            
-        }else{
-            System.out.println(num2+" é o maior numero");
+        if (num1 > num2) {
+            System.out.println(num1 + " e o maior numero ");
+        } else {
+            System.out.println(num2 + " é o maior numero");
         }
         sc.close();
     }

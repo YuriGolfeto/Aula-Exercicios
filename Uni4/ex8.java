@@ -9,12 +9,13 @@ public class ex8 {
         String letra = sc.nextLine();
         char[] letras = letra.toCharArray();
         for (char c : letras) {
-            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' ||c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U') {
-                System.out.println(c+" é uma vogal");  
-            }else{
-                System.out.println(c+" não e uma vogal");
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'A' || c == 'E' || c == 'I' || c == 'O'
+                    || c == 'U') {
+                System.out.println(c + " é uma vogal");
+            } else {
+                System.out.println(c + " não e uma vogal");
             }
-            
+
         }
         sc.close();
     }

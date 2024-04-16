@@ -9,10 +9,10 @@ public class exExtra {
         String letra = sc.nextLine();
         char[] letras = letra.toCharArray();
         char[] alt = new char[letras.length];
-        int j = 0; 
+        int j = 0;
         for (int i = letras.length; i > 0; i--) {
-            
-            alt[j]=letras[i-1];
+
+            alt[j] = letras[i - 1];
             j++;
         }
         System.out.println(alt);

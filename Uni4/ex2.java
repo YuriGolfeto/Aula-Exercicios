@@ -7,8 +7,8 @@ public class ex2 {
         Scanner sc = new Scanner(System.in);
         System.out.println("numero par ou impar :");
         int val = sc.nextInt();
-        if(val>0){
-            if (val%2 ==0) {
+        if (val > 0) {
+            if (val % 2 == 0) {
                 System.out.println("par ");
             } else {
                 System.out.println("inpar ");
