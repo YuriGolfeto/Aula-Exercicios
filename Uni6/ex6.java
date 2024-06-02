@@ -29,6 +29,6 @@ public class ex6 {
         } else {
             System.out.println("não possui o numero no vetor");
         }
-
+        sc.close();
     }
 }
