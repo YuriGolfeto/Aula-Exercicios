@@ -5,63 +5,123 @@ import java.util.Scanner;
 public class main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
         char table[][] = new char[8][8];
-        System.out.println("Matalha naval");
-        int times = 0;
-        int ships = 0;
-        int acertos = 0;
-        System.out.println("_ 1  2  3  4  5  6  7  8 X");
+        char tableNavios[][] = new char[8][8];
+        int navios = 0, jogadas = 0, acertos = 0;
+
+        // inicia as tableas
+        System.out.println("Batalha Naval");
         for (int i = 0; i < table.length; i++) {
-            System.out.print("" + (i + 1) + "");
-            int collun_times;
-            collun_times = 0;
             for (int j = 0; j < table.length; j++) {
-                if ((int) (Math.random() * 2) >= 1 && ships < 10 && collun_times < 2) {
+                table[i][j] = '~';
+                tableNavios[i][j] = '~';
+            }
+        }
+
+        System.out.println();
+        System.out.println("  0 1 2 3 4 5 6 7");
+        for (int i = 0; i < table.length; i++) {
+            System.out.print(i + " ");
+            for (int j = 0; j < table.length; j++) {
+                System.out.print(table[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        for (int i = 0; i < table.length; i++) {
+            int mudarColuna;
+            mudarColuna = 0;
+            for (int j = 0; j < table.length; j++) {
+                if ((int) (Math.random() * 3) == 1 && navios < 10 && mudarColuna < 2) {
                     table[i][j] = 'N';
-                    ships++;
-                    collun_times++;
-                    System.out.print(" N ");
-                } else {
-                    System.out.print(" ~ ");
+                    tableNavios[i][j] = 'N';
+                    navios++;
+                    mudarColuna++;
                 }
             }
-            System.out.println("");
-
         }
-        System.out.println("Y");
-        System.out.println(ships);
-        do {
-            System.out.println("posicao X ?");
-            int x = sc.nextInt();
-            System.out.println("Posicao Y ?");
-            int y = sc.nextInt();
-            if (x < 8 || y < 8) {
 
-                if (table[x - 1][y - 1] == 'N') {
-                    System.out.println("acertou");
-                    table[x - 1][y - 1] = 'X';
-                    acertos++;
-                    times++;
-                } else {
-                    System.out.println("errou");
-                    table[x - 1][y - 1] = 'O';
-                    times++;
+        while (jogadas < 30 && acertos < 10) {
+
+            System.out.println();
+            System.out.println("  0 1 2 3 4 5 6 7");
+            for (int i = 0; i < table.length; i++) {
+                System.out.print(i + " ");
+                for (int j = 0; j < table.length; j++) {
+                    System.out.print(table[i][j] + " ");
                 }
+                System.out.println();
+            }
+
+            System.out.println();
+            System.out.println("Digite as coordenadas para atacar (linha e coluna, separadas por espaço): ");
+            int linha = sc.nextInt();
+            int coluna = sc.nextInt();
+
+            // confere se o jogador jogou em uma posição inválida e se a coordenada
+            // informada ja nao foi atacada
+            while (((linha < 0 || linha > 7) || (coluna < 0 || coluna > 7))
+                    || (table[linha][coluna] == 'O' || table[linha][coluna] == 'X')) {
+                System.out.println();
+                System.out.println(
+                        "A coordenada informada já foi atacada ou a linha / coluna é menor que 0 ou maior que 7. Informe novamente");
+                System.out.println();
+
+                System.out.println("Digite as coordenadas para atacar (linha e coluna, separadas por espaço): ");
+                linha = sc.nextInt();
+                coluna = sc.nextInt();
+            }
+
+            // confere se o jogador acerou ou errou a casa
+            System.out.println();
+            if (table[linha][coluna] == 'N') {
+                System.out.println("Acertou!!");
+                table[linha][coluna] = 'X';
+                acertos++;
+                jogadas++;
             } else {
-                System.out.println("posicao invalida");
+                System.out.println("Você errou.");
+                table[linha][coluna] = 'O';
+                jogadas++;
             }
-        } while (times <= 30 || acertos <= ships);
-        System.out.println("Resumo:");
-        for (int i = 0; i < table.length; i++) {
-            System.out.print("" + (i + 1) + "");
-            for (int j = 0; j < table.length; j++) {
 
-                System.out.print(" " + table[i][j] + " ");
+            // tabuleiro atulizado sem mostrar a posição dos navios
+            System.out.println("  0 1 2 3 4 5 6 7");
+            for (int i = 0; i < table.length; i++) {
+                System.out.print(i + " ");
+                for (int j = 0; j < table.length; j++) {
+                    if (table[i][j] == 'N') {
+                        table[i][j] = '~';
+                        System.out.print(table[i][j]);
+                        System.out.print(" ");
+                        table[i][j] = 'N';
+                    } else {
+                        System.out.print(table[i][j] + " ");
+                    }
+                }
+                System.out.println();
             }
-            System.out.println("");
-
         }
-        System.out.println("Y");
+
+        System.out.println();
+        if (jogadas == 30) {
+            System.out.println("Você atingiu o limite de 30 jogadas e perdeu!");
+        } else if (acertos == 10) {
+            System.out.println("Parabéns, você ganhou!!");
+        }
+
+        System.out.println();
+        System.out.println("As posições dos navios eram: ");
+        System.out.println("  0 1 2 3 4 5 6 7");
+        for (int i = 0; i < tableNavios.length; i++) {
+            System.out.print(i + " ");
+            for (int j = 0; j < tableNavios.length; j++) {
+                System.out.print(tableNavios[i][j] + " ");
+            }
+            System.out.println();
+        }
+
         sc.close();
     }
 
