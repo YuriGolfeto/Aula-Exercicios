@@ -44,15 +44,16 @@ public class main {
 
         while (jogadas < 30 && acertos < 10) {
 
-            System.out.println();
-            System.out.println("  0 1 2 3 4 5 6 7");
-            for (int i = 0; i < table.length; i++) {
-                System.out.print(i + " ");
-                for (int j = 0; j < table.length; j++) {
-                    System.out.print(table[i][j] + " ");
-                }
-                System.out.println();
-            }
+            // System.out.println();
+            // System.out.println("  0 1 2 3 4 5 6 7");
+            // for (int i = 0; i < table.length; i++) {
+            //     System.out.print(i + " ");
+            //     for (int j = 0; j < table.length; j++) {
+            //         System.out.print(table[i][j] + " ");
+            //     }
+            //     System.out.println();
+            // }
+            jogadas++;
 
             System.out.println();
             System.out.println("Digite as coordenadas para atacar (linha e coluna, separadas por espaço): ");
@@ -79,11 +80,9 @@ public class main {
                 System.out.println("Acertou!!");
                 table[linha][coluna] = 'X';
                 acertos++;
-                jogadas++;
             } else {
                 System.out.println("Você errou.");
                 table[linha][coluna] = 'O';
-                jogadas++;
             }
 
             // tabuleiro atulizado sem mostrar a posição dos navios
@@ -92,10 +91,8 @@ public class main {
                 System.out.print(i + " ");
                 for (int j = 0; j < table.length; j++) {
                     if (table[i][j] == 'N') {
-                        table[i][j] = '~';
-                        System.out.print(table[i][j]);
+                        System.out.print("~");
                         System.out.print(" ");
-                        table[i][j] = 'N';
                     } else {
                         System.out.print(table[i][j] + " ");
                     }
